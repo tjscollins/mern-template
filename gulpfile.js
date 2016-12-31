@@ -2,11 +2,9 @@ const gulp = require( 'gulp' );
 const livereload = require( 'gulp-livereload' );
 const concat = require( 'gulp-concat' );
 const autoprefixer = require( 'gulp-autoprefixer' );
-const plumber = require( 'gulp-plumber' );
 const sourcemaps = require( 'gulp-sourcemaps' );
 const sass = require( 'gulp-sass' );
 const webpack = require( 'gulp-webpack' );
-const env = require( 'gulp-env' );
 const nodemon = require( 'gulp-nodemon' );
 const del = require( 'del' );
 
@@ -43,9 +41,7 @@ const SCSS = {
 };
 
 // Copy static resources to public folder
-gulp.task('static', ['fonts', 'img'], () => {
-  return;
-});
+gulp.task('static', ['fonts', 'img'], () => {});
 gulp.task('fonts', () => {
   return gulp
     .src(FONTS.in)
@@ -91,16 +87,22 @@ gulp.task( 'clean', function( ) {
   return del.sync([DIST + '/**/*']);
 });
 
-gulp.task( 'default', ['static', 'html', 'styles', 'react-redux'], () => {
-  return;
-});
+gulp.task(
+  'default',
+  ['static', 'html', 'styles', 'react-redux'],
+  () => {}
+);
 
-
-gulp.task( 'watch', [
+gulp.task('watch', [
   'default',
 ], () => {
   livereload.listen( );
-  gulp.watch(HTML_PATH + '**/*.html', ['HTML']);
-  gulp.watch(SCRIPTS_PATH, ['JSX']);
-  gulp.watch(SCSS_PATH + '**/*.scss', ['SCSS']);
+  gulp.watch(HTML + '**/*.html', ['html']);
+  gulp.watch(REACT_REDUX, ['react-redux']);
+  gulp.watch(STYLES + '**/*.scss', ['styles']);
+  nodemon({
+    script: './server.js',
+    ext: 'js json',
+    ignore: './public/bundle.js',
+  });
 });

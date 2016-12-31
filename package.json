@@ -17,9 +17,10 @@
     "boilerplate"
   ],
   "scripts": {
-    "test": "export NODE_ENV=test || SET NODE_ENV=test && mocha server/**/*test.js && karma start",
-    "test-watch": "nodemon --exec 'npm test'",
-    "start": "node server.js"
+    "server-test": "export NODE_ENV=test || SET NODE_ENV=test && mocha tests/server/**/*test.js",
+    "client-test": "karma start",
+    "start": "node server.js",
+    "test": "export NODE_ENV=test || SET NODE_ENV=test && mocha tests/server/**/*test.js && karma start"
   },
   "engines": {
     "node": "7.1.0"
@@ -58,6 +59,7 @@
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-react": "^6.8.0",
     "eslint-plugin-standard": "^2.0.1",
+    "expect": "^1.20.2",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-babel": "^6.1.2",
@@ -78,6 +80,7 @@
     "karma-sinon": "^1.0.5",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.1",
+    "mocha": "^3.2.0",
     "react-addons-test-utils": "^15.4.1",
     "sinon": "^1.17.6",
     "supertest": "^2.0.1",

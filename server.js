@@ -1,12 +1,12 @@
 'use strict';
 
-var express = require('express');
-var routes = require('./server/routes/index.js');
-var mongoose = require('mongoose');
-var passport = require('passport');
-var session = require('express-session');
+const express = require('express');
+const routes = require('./server/routes/index.js');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const session = require('express-session');
 
-var app = express();
+const app = express();
 require('dotenv').load();
 require('./server/config/passport')(passport);
 
@@ -17,14 +17,22 @@ app.use('/controllers', express.static(process.cwd() + '/server/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));
 app.use('/common', express.static(process.cwd() + '/server/common'));
 
-app.use(session({secret: 'secretClementine', resave: false, saveUninitialized: true}));
+app.use(session({
+  secret: 'secretClementine',
+  resave: false,
+  saveUninitialized: true,
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 routes(app, passport);
 
-var port = process.env.PORT || 8080;
+const port = process.env.PORT || 8080;
 app.listen(port, function() {
   console.log('Node.js listening on port ' + port + '...');
 });
+
+module.exports = {
+  app,
+};
