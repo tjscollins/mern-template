@@ -37,7 +37,7 @@ module.exports = {
     root: __dirname,
     modulesDirectories: [
       'node_modules',
-      './client/components/',
+      './client/react/components/',
     ],
     alias: {
       applicationStyles: 'client/styles/main.scss',

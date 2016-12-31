@@ -14,6 +14,6 @@ module.exports = {
     "node": true
   },
   "rules": {
-    "semi": 2
+    "spaced-comment": "off"
   }
 };
