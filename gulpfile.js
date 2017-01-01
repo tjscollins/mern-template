@@ -1,12 +1,12 @@
-const gulp = require( 'gulp' );
-const livereload = require( 'gulp-livereload' );
-const concat = require( 'gulp-concat' );
-const autoprefixer = require( 'gulp-autoprefixer' );
-const sourcemaps = require( 'gulp-sourcemaps' );
-const sass = require( 'gulp-sass' );
-const webpack = require( 'gulp-webpack' );
-const nodemon = require( 'gulp-nodemon' );
-const del = require( 'del' );
+const gulp = require('gulp');
+const livereload = require('gulp-livereload');
+const concat = require('gulp-concat');
+const autoprefixer = require('gulp-autoprefixer');
+const sourcemaps = require('gulp-sourcemaps');
+const sass = require('gulp-sass');
+const webpack = require('gulp-webpack');
+const nodemon = require('gulp-nodemon');
+const del = require('del');
 
 // File Paths
 const CLIENT = './client/';
@@ -15,9 +15,7 @@ const HTML = CLIENT + 'html/*.html';
 const REACT_REDUX = CLIENT + '/**/*.jsx';
 const STYLES = CLIENT + 'styles/';
 
-// SCSS
-
-// fonts
+// SCSS fonts
 const FONTS = {
   in: [CLIENT + 'static/fonts/*.*'],
   out: DIST + 'fonts/',
@@ -41,16 +39,18 @@ const SCSS = {
 };
 
 // Copy static resources to public folder
-gulp.task('static', ['fonts', 'img'], () => {});
+gulp.task('static', [
+  'fonts', 'img',
+], () => {});
 gulp.task('fonts', () => {
   return gulp
-    .src(FONTS.in)
-    .pipe(gulp.dest( FONTS.out ));
+    .src(FONTS. in)
+    .pipe(gulp.dest(FONTS.out));
 });
 gulp.task('img', () => {
   return gulp
-    .src(IMG.in)
-    .pipe(gulp.dest( IMG.out ));
+    .src(IMG. in)
+    .pipe(gulp.dest(IMG.out));
 });
 
 gulp.task('html', () => {
@@ -60,9 +60,9 @@ gulp.task('html', () => {
     .pipe(livereload());
 });
 
-gulp.task( 'styles', () => {
+gulp.task('styles', () => {
   return gulp
-    .src(SCSS.in + 'main.scss')
+    .src(SCSS. in + 'main.scss')
     .pipe(sourcemaps.init())
     .pipe(sass(SCSS.sassOpts))
     .pipe(autoprefixer())
@@ -72,31 +72,40 @@ gulp.task( 'styles', () => {
 });
 
 // Scripts
-gulp.task( 'react-redux', () => {
+gulp.task('react-redux-dev', () => {
   return gulp
     .src(CLIENT + 'react/index.jsx')
     .pipe(sourcemaps.init())
-    .pipe(webpack(require('./webpack.config.client.js')))
-    .pipe(concat( 'bundle.js' ))
+    .pipe(webpack(require('./webpack.config.dev.js')))
+    .pipe(concat('bundle.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(DIST))
     .pipe(livereload());
 });
 
-gulp.task( 'clean', function( ) {
+gulp.task('react-redux-production', () => {
+  return gulp
+    .src(CLIENT + 'react/index.jsx')
+    .pipe(sourcemaps.init())
+    .pipe(webpack(require('./webpack.config.production.js')))
+    .pipe(concat('bundle.js'))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(DIST))
+    .pipe(livereload());
+});
+
+gulp.task('clean', function() {
   return del.sync([DIST + '/**/*']);
 });
 
-gulp.task(
-  'default',
-  ['static', 'html', 'styles', 'react-redux'],
-  () => {}
-);
+gulp.task('default', [
+  'static', 'html', 'styles', 'react-redux-dev',
+], () => {});
 
 gulp.task('watch', [
   'default',
 ], () => {
-  livereload.listen( );
+  livereload.listen();
   gulp.watch(HTML + '**/*.html', ['html']);
   gulp.watch(REACT_REDUX, ['react-redux']);
   gulp.watch(STYLES + '**/*.scss', ['styles']);
@@ -106,3 +115,11 @@ gulp.task('watch', [
     ignore: './public/bundle.js',
   });
 });
+
+gulp.task('build', [
+  'clean',
+  'static',
+  'html',
+  'styles',
+  'react-redux-production',
+], () => {});
