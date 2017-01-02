@@ -2,6 +2,8 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: [
+    // 'script!jquery/dist/jquery.min.js',
+    // 'script!bootstrap-sass/assets/javascripts/bootstrap.min.js',
     './client/react/index.jsx',
   ],
   externals: {
@@ -62,5 +64,4 @@ module.exports = {
       },
     ],
   },
-  // devtool: 'eval-source-map',
 };

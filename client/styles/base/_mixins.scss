@@ -1,0 +1,9 @@
+@function map-width($non-map-width) {
+  @return 100%-$non-map-width;
+}
+
+@mixin custom-transition($transition, $function, $delay) {
+  transition: $transition;
+  transition-timing-function: $function;
+  transition-delay:$delay;
+}

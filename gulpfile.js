@@ -17,7 +17,10 @@ const STYLES = CLIENT + 'styles/';
 
 // SCSS fonts
 const FONTS = {
-  in: [CLIENT + 'static/fonts/*.*'],
+  in: [
+    CLIENT + 'static/fonts/*.*',
+    'node_modules/font-awesome/fonts/*.*',
+  ],
   out: DIST + 'fonts/',
 };
 
@@ -34,7 +37,12 @@ const SCSS = {
     outputStyle: 'compressed',
     precison: 3,
     errLogToConsole: true,
-    includePaths: [],
+    includePaths: [
+      'node_modules/bootstrap-sass/assets/stylesheets/',
+      'node_modules/font-awesome/css',
+      STYLES + 'base/',
+      STYLES + 'components/',
+    ],
   },
 };
 
@@ -106,13 +114,13 @@ gulp.task('watch', [
   'default',
 ], () => {
   livereload.listen();
-  gulp.watch(HTML + '**/*.html', ['html']);
-  gulp.watch(REACT_REDUX, ['react-redux']);
+  gulp.watch(HTML, ['html']);
+  gulp.watch(REACT_REDUX, ['react-redux-dev']);
   gulp.watch(STYLES + '**/*.scss', ['styles']);
   nodemon({
     script: './server.js',
     ext: 'js json',
-    ignore: './public/bundle.js',
+    ignore: ['*.scss', '*.jsx', './public/', 'gulpfile.js'],
   });
 });
 

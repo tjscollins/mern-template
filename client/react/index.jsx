@@ -6,6 +6,6 @@ import ReactDOM from 'react-dom';
 // import {Provider} from 'react-redux';
 
 /*----------Components----------*/
-import Main from 'Main';
+import MainContainer from 'MainContainer';
 
-ReactDOM.render(<Main />, document.getElementById('react-app'));
+ReactDOM.render(<MainContainer />, document.getElementById('react-app'));

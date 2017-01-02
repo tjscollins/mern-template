@@ -5,7 +5,7 @@ import React from 'react';
 
 
 /*eslint-disable require-jsdoc*/
-export class Main extends React.Component {
+export class MainContainer extends React.Component {
   constructor() {
     super();
   }
@@ -31,4 +31,4 @@ export class Main extends React.Component {
   }
 }
 
-export default Main;
+export default MainContainer;
