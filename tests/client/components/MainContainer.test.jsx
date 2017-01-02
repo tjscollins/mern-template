@@ -11,10 +11,10 @@ import expect from 'expect';
 // import {configure} from 'configureStore';
 
 /*----------Components----------*/
-import {Main} from 'Main';
+import {MainContainer} from 'MainContainer';
 
-describe('Main', () => {
+describe('MainContainer', () => {
   it('should exist', () => {
-    expect(Main).toExist();
+    expect(MainContainer).toExist();
   });
 });
