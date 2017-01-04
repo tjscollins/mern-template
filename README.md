@@ -1,28 +1,18 @@
-# Clementine.js MERN Boilerplate
-
-[![Join the chat at https://gitter.im/johnstonbl01/clementinejs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/johnstonbl01/clementinejs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# MERN Template based on Clementine.js
 
 ## Overview
 
-Clementine.js is a lightweight boilerplate for fullstack JavaScript development which utilizes MongoDB, Express and Node.js.
+This MERN Template is a boilerplate for fullstack JavaScript development which utilizes MongoDB, Express, React, and Node.js.
 
-This is a modified version of the [Free Code Camp](http://www.freecodecamp.com) version of Clementine.js.  I have added **React** and **React-Redux** to the stack, as well as **Gulp** and **Webpack** for building the front-end.
+This is a modified version of the [Free Code Camp](http://www.freecodecamp.com) version of Clementine.js by Blake Johnston.  I have added **React** and **React-Redux** to the stack, as well as configuring **Gulp** and **Webpack** for building the front-end, and **Karma** and **Mocha** for running unit tests on both the client-side and server-side applications.
 
-The [Free Code Camp](http://www.freecodecamp.com) version of Clementine.js is meant for use when completing projects as part of the FCC curriculum. This version includes GitHub authentication using [Passport](http://passportjs.org/).
-
-## Versions
-
-There are 3 versions of Clementine.js:
-
-- [**Standard**](https://github.com/johnstonbl01/clementinejs): the simplest version of Clementine.js. Intended for those who wish for the smallest and least intrusive footprint OR to implement features on their own.
-- [**Angular**](https://github.com/johnstonbl01/clementinejs-angular): a slightly more complex version of the same application. This version employs the use of AngularJS as the front-end framework.
-- **Free Code Camp (FCC)** (this version): A modified version of the standard boilerplate that is intended for use with the [Free Code Camp](http://freecodecamp.com/) curriculum.
+This boilerplate aims to be completely pre-configured for immediately developing a new fullstack application.
 
 # Quick Start Guide
 
 ### Prerequisites
 
-In order to use Clementine.js, you must have the following installed:
+In order to use this template, you must have the following installed:
 
 - [Node.js](https://nodejs.org/)
 - [NPM](https://nodejs.org/)
@@ -31,10 +21,10 @@ In order to use Clementine.js, you must have the following installed:
 
 ### Installation & Startup
 
-To install Clementine.js, simply enter the below in the terminal window:
+To install this template, simply enter the below in the terminal window:
 
 ```bash
-$ git clone https://github.com/johnstonbl01/clementinejs-fcc.git your-project
+$ git clone https://github.com/tjscollins/mern-template.git your-project
 ```
 
 To install the dependencies, enter the following in your terminal:
@@ -44,11 +34,7 @@ $ cd your-project
 $ npm install
 ```
 
-This will install the Clementine.js components into the `your-project` directory.
-
-### Setup GitHub Authentication
-
-Please follow [this guide](http://www.clementinejs.com/tutorials/tutorial-passport.html#GitHubAppSetup) to register the application with GitHub and get API keys / secrets.
+This will install the required components into the `your-project` directory.
 
 ### Local Environment Variables
 
@@ -73,33 +59,6 @@ Node.js listening on port 8080...
 ```
 
 Next, open your browser and enter `http://localhost:8080/`. Congrats, you're up and running!
-
-### c9.io Setup
-
-If you're using c9.io, please [reference the documentation](http://www.clementinejs.com/versions/fcc.html#c9.ioSetup) for instructions to get Clementine.js working in the c9 environment.
-
-## Contributing
-
-This is an open-source project, and contributions are always welcome! To see ways to contribute, please review the [contribution guidelines](http://www.clementinejs.com/developers/contributing.html).
-
-## Documentation
-
-Complete documentation can be [found here](http://www.clementinejs.com).
-
-### Tutorial
-
-You can find a complete step-by-step tutorial on how to create this app from the ground up [here](http://www.clementinejs.com/tutorials/tutorial-passport.html).
-
-## Features
-
-| Features           | Standard  | Angular   | FCC       |
-|:---------          |:--------: |:--------: |:---------:|
-| MongoDB            | _Yes_     | _Yes_     | _Yes_     |
-| Express            | _Yes_     | _Yes_     | _Yes_     |
-| AngularJS (1.x)    | _No_      | _Yes_     | _No_      |
-| Node.js            | _Yes_     | _Yes_     | _Yes_     |
-| Passport           | _No_      | _No_      | _Yes_     |
-| Mongoose           | _No_      | _No_      | _Yes_     |
 
 ## License
 
