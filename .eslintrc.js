@@ -1,6 +1,6 @@
 module.exports = {
   "extends": [
-    "google", "standard-react"
+    "google", "standard-react",
   ],
   "parserOptions": {
     "ecmaVersion": 6,
@@ -14,6 +14,8 @@ module.exports = {
     "node": true
   },
   "rules": {
-    "spaced-comment": "off"
+    "max-len": "off",
+    "no-unused-vars": "warn",
+    "spaced-comment": "off",
   }
 };

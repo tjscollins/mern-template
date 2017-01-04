@@ -1,10 +1,10 @@
 'use strict';
+/*eslint-disable require-jsdoc*/
 
-var path = process.cwd();
-var ClickHandler = require(path + '/server/controllers/clickHandler.server.js');
+const path = process.cwd();
+const ClickHandler = require(path + '/server/controllers/clickHandler.server.js');
 
 module.exports = function(app, passport) {
-
   function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
       return next();
@@ -13,7 +13,7 @@ module.exports = function(app, passport) {
     }
   }
 
-  var clickHandler = new ClickHandler();
+  let clickHandler = new ClickHandler();
 
   app
     .route('/')
@@ -24,7 +24,7 @@ module.exports = function(app, passport) {
   app
     .route('/login')
     .get(function(req, res) {
-      res.sendFile(path + '/public/login.html');
+      res.sendFile(path + '/public/index.html');
     });
 
   app
@@ -37,7 +37,7 @@ module.exports = function(app, passport) {
   app
     .route('/profile')
     .get(isLoggedIn, function(req, res) {
-      res.sendFile(path + '/public/profile.html');
+      res.sendFile(path + '/public/index.html');
     });
 
   app
@@ -54,7 +54,7 @@ module.exports = function(app, passport) {
     .route('/auth/github/callback')
     .get(passport.authenticate('github', {
       successRedirect: '/',
-      failureRedirect: '/login'
+      failureRedirect: '/login',
     }));
 
   app

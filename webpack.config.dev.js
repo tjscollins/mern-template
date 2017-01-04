@@ -4,7 +4,7 @@ module.exports = {
   entry: [
     // 'script!jquery/dist/jquery.min.js',
     // 'script!bootstrap-sass/assets/javascripts/bootstrap.min.js',
-    './client/react/index.jsx',
+    './client/react/react-app.jsx',
   ],
   externals: {
     jquery: 'jQuery',

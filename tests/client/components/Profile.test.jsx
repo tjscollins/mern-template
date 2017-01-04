@@ -11,10 +11,10 @@ import expect from 'expect';
 // import {configure} from 'configureStore';
 
 /*----------Components----------*/
-import {MainContainer} from 'MainContainer';
+import {Profile} from 'Profile';
 
-describe('MainContainer', () => {
+describe('Profile', () => {
   it('should exist', () => {
-    expect(MainContainer).toExist();
+    expect(Profile).toExist();
   });
 });

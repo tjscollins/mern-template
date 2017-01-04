@@ -5,7 +5,7 @@ import React from 'react';
 
 
 /*eslint-disable require-jsdoc*/
-export class MainContainer extends React.Component {
+export class Index extends React.Component {
   constructor() {
     super();
   }
@@ -15,7 +15,7 @@ export class MainContainer extends React.Component {
         <div className='container'>
           <img src='/public/img/clementine_150.png' />
           <br />
-          <p className='clementine-text'>Clementine.js</p>
+          <p className='clementine-text'>MERN Template</p>
         </div>
 
         <div className='container'>
@@ -27,8 +27,8 @@ export class MainContainer extends React.Component {
           </div>
         </div>
       </div>
-  );
+    );
   }
 }
 
-export default MainContainer;
+export default Index;
