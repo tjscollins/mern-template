@@ -1,15 +1,22 @@
+/**
+ * Breakpoints Based on Bootstrap v3
+ */
 @mixin for-phone-only {
-  @media (max-width: 767px) { @content; }
+  // Bootstrap Size: xs
+  @media (max-width: $phone-screen) { @content; }
 }
 @mixin for-tablet-portrait-up {
-  @media (min-width: 768px) { @content; }
+  // Bootstrap Size: sm
+  @media (min-width: $tblt-port) { @content; }
 }
 @mixin for-tablet-landscape-up {
-  @media (min-width: 900px) { @content; }
+  // Bootstrap Size: md
+  @media (min-width: $tblt-land) { @content; }
 }
 @mixin for-desktop-up {
-  @media (min-width: 1200px) { @content; }
+  // Bootstrap Size: lg
+  @media (min-width: $desktop) { @content; }
 }
 @mixin for-big-desktop-up {
-  @media (min-width: 1800px) { @content; }
+  @media (min-width: $big-desktop) { @content; }
 }
