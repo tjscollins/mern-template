@@ -1,7 +1,7 @@
 {
   "name": "mern-template",
   "version": "1.0.0",
-  "description": "A React-Redux fork of Clementinejs-FCC",
+  "description": "A React-Redux fork of Clementinejs-FCC with Gulp building and Karma/Mocha unit testing",
   "main": "server.js",
   "repository": {
     "type": "git",
@@ -10,6 +10,8 @@
   "keywords": [
     "MongoDB",
     "Mongoose",
+    "React",
+    "Redux",
     "full stack",
     "Express",
     "Node",
@@ -28,6 +30,7 @@
   "author": "Tyler Collins",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "express-session": "^1.14.2",

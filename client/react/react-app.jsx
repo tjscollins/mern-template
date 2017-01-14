@@ -5,7 +5,7 @@ import {Router, Route, IndexRoute, Link, browserHistory} from 'react-router';
 
 /*----------Redux----------*/
 import {Provider} from 'react-redux';
-import configureStore from 'configure';
+import configureStore from 'configureStore';
 
 /*----------Components----------*/
 import Index from 'Index';

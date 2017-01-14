@@ -40,6 +40,7 @@ module.exports = {
     modulesDirectories: [
       'node_modules',
       './client/react/components/',
+      './client/redux',
     ],
     alias: {
       applicationStyles: 'client/styles/main.scss',

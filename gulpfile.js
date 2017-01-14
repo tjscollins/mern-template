@@ -1,3 +1,26 @@
+/**
+ * Custom Gulpfile for Full Stack MERN Development
+ *
+ * gulp static
+ *      -- copies static resources from /client/static to /public/static
+ * gulp html
+ *      -- copies html files from /client/html to /public/html
+ * gulp styles
+ *      -- compiles SCSS style sheets and places minified output in /public/css
+ * gulp react-redux-dev
+ *      -- transpiles client side JS code w/ webpack using dev settings
+ * gulp react-redux-production
+ *      -- transpiles client side JS code w/ webpack using production settings
+ * gulp clean
+ *      -- cleans /public folder of old files
+ * gulp default
+ *      -- runs static, html, styles, react-redux-dev
+ * gulp watch
+ *      -- runs static, html, styles, react-redux-dev, and starts nodemon
+ * gulp build
+ *      -- runs clean, static, html, styles, react-redux-production
+ */
+
 const gulp = require('gulp');
 const livereload = require('gulp-livereload');
 const concat = require('gulp-concat');

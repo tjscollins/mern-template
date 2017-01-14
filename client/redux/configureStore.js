@@ -2,7 +2,7 @@ import * as redux from 'redux';
 import thunk from 'redux-thunk';
 import {reducer} from 'reducers';
 
-const configure = (initialState = {}) => {
+const configureStore = (initialState = {}) => {
   let combinedReducer = reducer || redux.combineReducers({
     main: reducer,
   });
@@ -12,4 +12,4 @@ const configure = (initialState = {}) => {
   return store;
 };
 
-export default configure;
+export default configureStore;
