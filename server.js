@@ -11,7 +11,7 @@ const app = express();
 require('dotenv').load();
 require('./server/config/passport')(passport);
 
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGODB_URI);
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());

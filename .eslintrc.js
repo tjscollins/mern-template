@@ -1,4 +1,12 @@
 module.exports = {
+  "ecmaFeatures": {
+    "classes": true,
+    "jsx": true,
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+  },
   "extends": [
     "google", "standard-react",
   ],
@@ -7,15 +15,17 @@ module.exports = {
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
   },
-  "env": {
-    "browser": true,
-    "node": true
-  },
+  "plugins": [
+    "react", "import",
+  ],
   "rules": {
-    "max-len": "off",
+    "max-len": ["error", 150],
     "no-unused-vars": "warn",
-    "spaced-comment": "off",
+    "react/jsx-no-bind": "off",
+    "spaced-comment": "off"
+  },
+  "settings": {
   }
 };

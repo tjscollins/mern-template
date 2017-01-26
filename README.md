@@ -6,7 +6,7 @@ This MERN Template is a boilerplate for fullstack JavaScript development which u
 
 This is a modified version of the [Free Code Camp](http://www.freecodecamp.com) version of Clementine.js by Blake Johnston.  I have added **React** and **React-Redux** to the stack, as well as configuring **Gulp** and **Webpack** for building the front-end, and **Karma** and **Mocha** for running unit tests on both the client-side and server-side applications.
 
-This boilerplate aims to be completely pre-configured for immediately developing a new fullstack application.
+This boilerplate aims to be completely pre-configured for immediately developing a new Full-Stack application.
 
 # Quick Start Guide
 
