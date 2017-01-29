@@ -3,7 +3,7 @@ const webpackConfig = require('./webpack.config.dev.js');
 module.exports = function(config) {
   config.set({
     autowatch: false,
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'Firefox'],
     singleRun: true,
     frameworks: [
       'mocha',

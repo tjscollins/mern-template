@@ -52,7 +52,7 @@ APP_URL=http://localhost:8080/
 
 To start the app, make sure you're in the project directory and type `node server.js` into the terminal. This will start the Node server and connect to MongoDB.
 
-You should the following messages within the terminal window:
+You should see the following messages within the terminal window:
 
 ```
 Node.js listening on port 8080...
