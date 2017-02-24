@@ -1,52 +1,67 @@
 'use strict';
 
-var GitHubStrategy = require('passport-github').Strategy;
-var User = require('../models/users');
-var configAuth = require('./auth');
+const GitHubStrategy = require('passport-github').Strategy;
+const User = require('../models/users');
+const configAuth = require('./auth');
 
-module.exports = function (passport) {
-	passport.serializeUser(function (user, done) {
-		done(null, user.id);
-	});
+const registerGithubUser = function(token, refreshToken, profile, done) {
+  process
+    .nextTick(function() {
+      User
+        .findOne({
+          'github.id': profile.id,
+        }, function(err, user) {
+					/*istanbul ignore next: not sure how to generate error for test*/
+          if (err) {
+            return done(err);
+          }
 
-	passport.deserializeUser(function (id, done) {
-		User.findById(id, function (err, user) {
-			done(err, user);
-		});
-	});
+					/*istanbul ignore next*/
+          if (user) {
+            return done(null, user);
+          } else {
+            let newUser = new User();
 
-	passport.use(new GitHubStrategy({
-		clientID: configAuth.githubAuth.clientID,
-		clientSecret: configAuth.githubAuth.clientSecret,
-		callbackURL: configAuth.githubAuth.callbackURL
-	},
-	function (token, refreshToken, profile, done) {
-		process.nextTick(function () {
-			User.findOne({ 'github.id': profile.id }, function (err, user) {
-				if (err) {
-					return done(err);
-				}
+            newUser.github.id = profile.id;
+            newUser.github.username = profile.username;
+            newUser.github.displayName = profile.displayName;
+            newUser.github.publicRepos = profile._json.public_repos;
 
-				if (user) {
-					return done(null, user);
-				} else {
-					var newUser = new User();
+            newUser.save(function(err) {
+							/*istanbul ignore next: hard to trigger for tests*/
+              if (err) {
+                throw err;
+              }
 
-					newUser.github.id = profile.id;
-					newUser.github.username = profile.username;
-					newUser.github.displayName = profile.displayName;
-					newUser.github.publicRepos = profile._json.public_repos;
-					newUser.nbrClicks.clicks = 0;
+              return done(null, newUser);
+            });
+          }
+        });
+    });
+};
+exports.registerGithubUser = registerGithubUser;
 
-					newUser.save(function (err) {
-						if (err) {
-							throw err;
-						}
+/**
+ * export - passport initialization
+ *
+ * @param  {module} passport main passport module
+ */
+exports.default = function(passport) {
+  passport
+    .serializeUser(function(user, done) {
+      done(null, user.id);
+    });
 
-						return done(null, newUser);
-					});
-				}
-			});
-		});
-	}));
+  passport.deserializeUser(function(id, done) {
+    User
+      .findById(id, function(err, user) {
+        done(err, user);
+      });
+  });
+
+  passport.use(new GitHubStrategy({
+    clientID: configAuth.githubAuth.clientID,
+    clientSecret: configAuth.githubAuth.clientSecret,
+    callbackURL: configAuth.githubAuth.callbackURL,
+  }, registerGithubUser));
 };

@@ -3,8 +3,13 @@
 
 const path = process.cwd();
 
+const sendIndex = (req, res) => {
+  res.sendFile(`${path}/public/index.html`);
+};
+
 module.exports = function(app, passport) {
   function isLoggedIn(req, res, next) {
+    /*istanbul ignore next: not sure how to fake req.isAuthenticated() for tests*/
     if (req.isAuthenticated()) {
       return next();
     } else {
@@ -14,15 +19,11 @@ module.exports = function(app, passport) {
 
   app
     .route('/')
-    .get(isLoggedIn, function(req, res) {
-      res.sendFile(path + '/public/index.html');
-    });
+    .get(isLoggedIn, sendIndex);
 
   app
     .route('/login')
-    .get(function(req, res) {
-      res.sendFile(path + '/public/index.html');
-    });
+    .get(sendIndex);
 
   app
     .route('/logout')
@@ -33,15 +34,15 @@ module.exports = function(app, passport) {
 
   app
     .route('/profile')
-    .get(isLoggedIn, function(req, res) {
-      res.sendFile(path + '/public/index.html');
-    });
+    .get(isLoggedIn, sendIndex);
 
   app
     .route('/api/me')
-    .get(isLoggedIn, function(req, res) {
-      res.json(req.user.github);
-    });
+    .get(isLoggedIn,
+      /*istanbul ignore next: not sure how to fake req.isAuthenticated() for tests*/
+      function(req, res) {
+        res.json(req.user.github);
+      });
 
   app
     .route('/auth/github')

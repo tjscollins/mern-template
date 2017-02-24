@@ -37,6 +37,22 @@ describe('Server Routes', () => {
     });
   });
 
+  describe('/logout', () => {
+    describe('GET', () => {
+      it('should redirect to login after logout', (done) => {
+        request(app)
+          .get('/logout')
+          .send()
+          .expect(302)
+          .end((err, res) => {
+            if (err)
+              return done(err);
+            done();
+          });
+      });
+    });
+  });
+
   describe('/profile', () => {
     describe('GET', () => {
       it('should redirect an unauthenticated user', (done) => {
