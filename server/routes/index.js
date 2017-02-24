@@ -2,7 +2,6 @@
 /*eslint-disable require-jsdoc*/
 
 const path = process.cwd();
-const ClickHandler = require(path + '/server/controllers/clickHandler.server.js');
 
 module.exports = function(app, passport) {
   function isLoggedIn(req, res, next) {
@@ -12,8 +11,6 @@ module.exports = function(app, passport) {
       res.redirect('/login');
     }
   }
-
-  let clickHandler = new ClickHandler();
 
   app
     .route('/')
@@ -41,7 +38,7 @@ module.exports = function(app, passport) {
     });
 
   app
-    .route('/api/:id')
+    .route('/api/me')
     .get(isLoggedIn, function(req, res) {
       res.json(req.user.github);
     });
@@ -56,10 +53,4 @@ module.exports = function(app, passport) {
       successRedirect: '/',
       failureRedirect: '/login',
     }));
-
-  app
-    .route('/api/:id/clicks')
-    .get(isLoggedIn, clickHandler.getClicks)
-    .post(isLoggedIn, clickHandler.addClick)
-    .delete(isLoggedIn, clickHandler.resetClicks);
 };
