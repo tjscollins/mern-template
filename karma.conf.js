@@ -23,6 +23,9 @@ module.exports = function(config) {
       'tests/client/**/*.test.js',
       'tests/client/**/*.test.jsx',
     ],
+    frameworks: [
+      'mocha', 'sinon',
+    ],
     preprocessors: {
       'tests/client/**/*.test.js': [
         'webpack', 'sourcemap', 'coverage',
@@ -35,9 +38,6 @@ module.exports = function(config) {
       'mocha', 'coverage',
     ],
     singleRun: true,
-    frameworks: [
-      'mocha', 'sinon',
-    ],
     webpack: webpackConfig,
     webpackServer: {
       noInfo: true,
