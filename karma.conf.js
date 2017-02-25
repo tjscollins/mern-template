@@ -15,8 +15,14 @@ module.exports = function(config) {
       },
     },
     coverageReporter: {
-      type: 'html',
-      dir: 'coverage/',
+      reporters: [
+        {
+          type: 'html',
+          dir: 'coverage/',
+        }, {
+          type: 'text-summary',
+        },
+      ],
     },
     files: [
       // 'node_modules/jquery/dist/jquery.min.js',
