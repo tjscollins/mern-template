@@ -4,7 +4,6 @@ import React from 'react';
 /*----------Components----------*/
 
 
-/*eslint-disable require-jsdoc*/
 export class RouteContainer extends React.Component {
   constructor() {
     super();
@@ -17,5 +16,9 @@ export class RouteContainer extends React.Component {
   );
   }
 }
+
+RouteContainer.propTypes = {
+  children: React.PropTypes.array,
+};
 
 export default RouteContainer;

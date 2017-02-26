@@ -7,20 +7,20 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 
 /*----------Redux----------*/
-// import {Provider} from 'react-redux';
-// import {configure} from 'configureStore';
+// import {Provider} from 'react-redux'; import {configure} from
+// 'configureStore';
 
 /*----------Components----------*/
-import {Profile} from 'Profile';
+import {Application} from 'Application';
 
-describe('Profile', () => {
+describe('Application', () => {
   it('should exist', () => {
-    expect(Profile).toExist();
+    expect(Application).toExist();
   });
 
   it('should render without errors', () => {
     try {
-      let profile = TestUtils.renderIntoDocument(<Profile />);
+      let app = TestUtils.renderIntoDocument(<Application />);
     } catch (error) {
       expect(error).toNotExist();
     }

@@ -4,7 +4,6 @@ import React from 'react';
 /*----------Components----------*/
 
 
-/*eslint-disable require-jsdoc*/
 export class Index extends React.Component {
   constructor() {
     super();

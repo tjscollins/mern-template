@@ -1,4 +1,55 @@
 const webpack = require('webpack');
+const path = require('path');
+
+const preLoaders = [
+  {
+    test: /\.css$/,
+    loader: 'null',
+  }, {
+    test: /\.mp4$/,
+    loader: 'null',
+  }, {
+    test: /\.svg$/,
+    loader: 'null',
+  }, {
+    test: /\.png$/,
+    loader: 'null',
+  }, {
+    test: /\.jpg$/,
+    loader: 'null',
+  }, {
+    test: /\.gif$/,
+    loader: 'null',
+  }, {
+    test: /\.(otf|eot|ttf|woff|woff2)/,
+    loader: 'null',
+  },
+
+  // Loader for JSON, used in some tests
+  {
+    test: /\.json$/,
+    loader: 'json',
+  },
+];
+
+const loaders = [
+  {
+    test: /\.jsx?$/,
+    loader: 'babel-loader',
+    query: {
+      presets: ['react', 'es2015', 'stage-0'],
+    },
+    exclude: /(node_modules|bower_components)/,
+  },
+];
+
+const postLoaders = [
+  {
+    test: /\.jsx?$/,
+    exclude: /(test|node_modules|bower_components)/,
+    loader: 'istanbul-instrumenter',
+  },
+];
 
 module.exports = {
   entry: [
@@ -10,11 +61,7 @@ module.exports = {
     jquery: 'jQuery',
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      '$': 'jquery',
-      'jQuery': 'jquery',
-      'jquery': 'jquery',
-    }),
+    new webpack.ProvidePlugin({'$': 'jquery', 'jQuery': 'jquery', 'jquery': 'jquery'}),
   ],
   output: {
     path: __dirname,
@@ -23,32 +70,19 @@ module.exports = {
   resolve: {
     root: __dirname,
     modulesDirectories: [
-      'node_modules',
-      './client/react/components/',
-      './client/redux',
+      'node_modules', './client/react/', './client/react/components/', './client/redux',
     ],
     alias: {
       applicationStyles: 'client/styles/main.scss',
     },
-    extensions: ['', '.js', '.jsx'],
+    extensions: [
+      '', '.js', '.jsx',
+    ],
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.json$/,
-        loader: 'json',
-      },
-    ],
-    loaders: [
-      {
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015', 'stage-0'],
-        },
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-      },
-    ],
+    preLoaders,
+    loaders,
+    postLoaders,
   },
-  devtool: 'eval-source-map',
+  devtool: 'inline-source-map',
 };

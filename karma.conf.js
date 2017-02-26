@@ -11,18 +11,19 @@ module.exports = function(config) {
       captureConsole: true,
       mocha: {
         bail: true,
-        timeout: '5000',
-      },
+        timeout: '5000'
+      }
     },
     coverageReporter: {
+      dir: 'tests/coverage/',
       reporters: [
         {
           type: 'html',
-          dir: 'coverage/',
+          subdir: 'html'
         }, {
-          type: 'text-summary',
+          type: 'text-summary'
         },
-      ],
+      ]
     },
     files: [
       // 'node_modules/jquery/dist/jquery.min.js',
@@ -32,12 +33,15 @@ module.exports = function(config) {
     frameworks: [
       'mocha', 'sinon',
     ],
+    plugins: [
+      'karma-phantomjs-launcher', 'karma-mocha', 'karma-sourcemap-loader', 'karma-webpack', 'karma-coverage', 'karma-mocha-reporter', 'karma-sinon',
+    ],
     preprocessors: {
       'tests/client/**/*.test.js': [
-        'webpack', 'sourcemap', 'coverage',
+        'webpack', 'sourcemap', //'coverage',
       ],
       'tests/client/**/*.test.jsx': [
-        'webpack', 'sourcemap', 'coverage',
+        'webpack', 'sourcemap', //'coverage',
       ],
     },
     reporters: [

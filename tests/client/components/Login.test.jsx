@@ -2,9 +2,9 @@
 
 /*----------Modules----------*/
 import expect from 'expect';
-// import React from 'react';
+import React from 'react';
 // import ReactDOM from 'react-dom';
-// import TestUtils from 'react-addons-test-utils';
+import TestUtils from 'react-addons-test-utils';
 
 /*----------Redux----------*/
 // import {Provider} from 'react-redux';
@@ -16,5 +16,13 @@ import {Login} from 'Login';
 describe('Login', () => {
   it('should exist', () => {
     expect(Login).toExist();
+  });
+
+  it('should render without errors', () => {
+    try {
+      let login = TestUtils.renderIntoDocument(<Login />);
+    } catch (error) {
+      expect(error).toNotExist();
+    }
   });
 });

@@ -1,4 +1,7 @@
-const expect = require('expect');
+/*global describe it*/
+
+/*----------Modules----------*/
+import expect from 'expect';
 
 describe('React-App', () => {
   it('should properly run tests', () => {
