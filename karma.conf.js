@@ -15,7 +15,7 @@ module.exports = function(config) {
       }
     },
     coverageReporter: {
-      dir: 'tests/coverage/',
+      dir: 'test/coverage/',
       reporters: [
         {
           type: 'html',
@@ -27,8 +27,8 @@ module.exports = function(config) {
     },
     files: [
       // 'node_modules/jquery/dist/jquery.min.js',
-      'tests/client/**/*.test.js',
-      'tests/client/**/*.test.jsx',
+      'test/client/**/*.test.js',
+      'test/client/**/*.test.jsx',
     ],
     frameworks: [
       'mocha', 'sinon',
@@ -37,10 +37,10 @@ module.exports = function(config) {
       'karma-phantomjs-launcher', 'karma-mocha', 'karma-sourcemap-loader', 'karma-webpack', 'karma-coverage', 'karma-mocha-reporter', 'karma-sinon',
     ],
     preprocessors: {
-      'tests/client/**/*.test.js': [
+      'test/client/**/*.test.js': [
         'webpack', 'sourcemap', //'coverage',
       ],
-      'tests/client/**/*.test.jsx': [
+      'test/client/**/*.test.jsx': [
         'webpack', 'sourcemap', //'coverage',
       ],
     },

@@ -20,11 +20,11 @@
     "testing driven development"
   ],
   "scripts": {
-    "server-test": "export NODE_ENV=test || SET NODE_ENV=test && istanbul cover _mocha tests/server/**/*test.js",
+    "server-test": "export NODE_ENV=test || SET NODE_ENV=test && istanbul cover _mocha test/server/**/*test.js",
     "client-test": "karma start",
     "start": "node server.js",
-    "test": "export NODE_ENV=test || SET NODE_ENV=test && istanbul cover _mocha tests/server/**/*test.js && karma start",
-    "coverage": "istanbul cover _mocha tests/server/**/*test.js"
+    "test": "export NODE_ENV=test || SET NODE_ENV=test && istanbul cover _mocha test/server/**/*test.js && karma start",
+    "coverage": "istanbul cover _mocha test/server/**/*test.js"
   },
   "engines": {
     "node": "7.1.0"
@@ -78,7 +78,6 @@
     "gulp-sass": "^3.0.0",
     "gulp-sourcemaps": "^1.9.1",
     "gulp-webpack": "^1.5.0",
-    "isparta": "^4.0.0",
     "istanbul-instrumenter-loader": "^0.2.0",
     "karma": "^1.3.0",
     "karma-chrome-launcher": "^2.0.0",
