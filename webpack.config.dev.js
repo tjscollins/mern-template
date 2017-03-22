@@ -1,6 +1,8 @@
 const webpack = require('webpack');
-const path = require('path');
 
+/**
+ * Webpack Loaders
+ */
 const preLoaders = [
   {
     test: /\.css$/,
@@ -51,6 +53,10 @@ const postLoaders = [
   },
 ];
 
+const plugins = [
+  new webpack.ProvidePlugin({'$': 'jquery', 'jQuery': 'jquery', 'jquery': 'jquery'}),
+];
+
 module.exports = {
   entry: [
     // 'script!jquery/dist/jquery.min.js',
@@ -60,9 +66,7 @@ module.exports = {
   externals: {
     jquery: 'jQuery',
   },
-  plugins: [
-    new webpack.ProvidePlugin({'$': 'jquery', 'jQuery': 'jquery', 'jquery': 'jquery'}),
-  ],
+  plugins,
   output: {
     path: __dirname,
     filename: './public/bundle.js',
@@ -70,7 +74,10 @@ module.exports = {
   resolve: {
     root: __dirname,
     modulesDirectories: [
-      'node_modules', './client/react/', './client/react/components/', './client/redux',
+      'node_modules',
+      './client/react/',
+      './client/react/components/',
+      './client/redux',
     ],
     alias: {
       applicationStyles: 'client/styles/main.scss',
@@ -79,10 +86,10 @@ module.exports = {
       '', '.js', '.jsx',
     ],
   },
-  module: {
-    preLoaders,
-    loaders,
-    postLoaders,
-  },
+ module: {
+  preLoaders,
+  loaders,
+  postLoaders
+},
   devtool: 'inline-source-map',
 };
