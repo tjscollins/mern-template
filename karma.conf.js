@@ -15,7 +15,7 @@ module.exports = function(config) {
       }
     },
     coverageReporter: {
-      dir: 'test/coverage/',
+      dir: 'test/client/coverage/',
       reporters: [
         {
           type: 'html',
