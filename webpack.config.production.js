@@ -46,15 +46,16 @@ const plugins = [
     }),
   new webpack
     .optimize
-    .DedupePlugin()
+    .DedupePlugin(),
+  new webpack
+    .optimize
+    .AggressiveMergingPlugin()
 ];
 
 module.exports = {
-  entry: [
-    // 'script!jquery/dist/jquery.min.js',
+  entry: [// 'script!jquery/dist/jquery.min.js',
     // 'script!bootstrap-sass/assets/javascripts/bootstrap.min.js',
-    './client/react/react-app.jsx'
-  ],
+    './client/react/react-app.jsx'],
   externals: {
     jquery: 'jQuery'
   },

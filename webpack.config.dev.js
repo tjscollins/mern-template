@@ -91,5 +91,5 @@ module.exports = {
   loaders,
   postLoaders
 },
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
 };
