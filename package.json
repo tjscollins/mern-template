@@ -20,11 +20,11 @@
     "testing driven development"
   ],
   "scripts": {
-    "server-test": "export NODE_ENV=test || SET NODE_ENV=test && istanbul cover _mocha test/server/**/*test.js --dir ./test/server/coverage",
+    "server-test": "export NODE_ENV=test || SET NODE_ENV=test && istanbul cover _mocha tests/server/**/*test.js --dir ./tests/server/coverage",
     "client-test": "karma start",
     "start": "node server.js",
-    "test": "export NODE_ENV=test || SET NODE_ENV=test && istanbul cover _mocha test/server/**/*test.js --dir ./test/server/coverage && karma start",
-    "coverage": "istanbul cover _mocha test/server/**/*test.js"
+    "test": "export NODE_ENV=test || SET NODE_ENV=test && istanbul cover _mocha tests/server/**/*test.js --dir ./tests/server/coverage && karma start",
+    "coverage": "istanbul cover _mocha tests/server/**/*test.js"
   },
   "engines": {
     "node": "7.1.0"
