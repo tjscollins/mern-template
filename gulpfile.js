@@ -30,6 +30,8 @@ const sass = require('gulp-sass');
 const webpack = require('gulp-webpack');
 const nodemon = require('gulp-nodemon');
 const del = require('del');
+const gzip = require('gulp-gzip');
+
 
 // File Paths
 const CLIENT = './client/';
@@ -121,6 +123,7 @@ gulp.task('react-redux-production', () => {
     .pipe(webpack(require('./webpack.config.production.js')))
     .pipe(concat('bundle.js'))
     .pipe(sourcemaps.write())
+    .pipe(gzip({threshold: 1024}))
     .pipe(gulp.dest(DIST))
     .pipe(livereload());
 });
