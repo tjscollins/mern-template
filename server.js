@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const expressStaticGzip = require('express-static-gzip');
 
 const app = express();
 require('dotenv').load();
@@ -15,9 +16,7 @@ mongoose.connect(process.env.MONGODB_URI);
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
-app.use('/controllers', express.static(process.cwd() + '/server/controllers'));
-app.use('/public', express.static(process.cwd() + '/public'));
-app.use('/common', express.static(process.cwd() + '/server/common'));
+app.use('/public', expressStaticGzip(process.cwd() + '/public'));
 
 app.use(session({
   secret: 'secretClementine',

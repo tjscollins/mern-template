@@ -1,6 +1,5 @@
 'use strict';
 /*eslint-disable require-jsdoc*/
-
 const path = process.cwd();
 
 const sendIndex = (req, res) => {
@@ -16,10 +15,16 @@ module.exports = function(app, passport) {
       res.redirect('/login');
     }
   }
+  // app.get('*.js', function(req, res, next) {
+  //   console.log('JS requested', req.url);
+  //   req.url = req.url + '.gz';
+  //   res.set('Content-Encoding', 'gzip');
+  //   next();
+  // });
 
   app
-    .route('/')
-    .get(isLoggedIn, sendIndex);
+  .route('/')
+  .get(sendIndex);
 
   app
     .route('/login')
@@ -39,10 +44,10 @@ module.exports = function(app, passport) {
   app
     .route('/api/me')
     .get(isLoggedIn,
-      /*istanbul ignore next: not sure how to fake req.isAuthenticated() for tests*/
-      function(req, res) {
-        res.json(req.user.github);
-      });
+    /*istanbul ignore next: not sure how to fake req.isAuthenticated() for tests*/
+    function(req, res) {
+      res.json(req.user.github);
+    });
 
   app
     .route('/auth/github')
@@ -52,6 +57,6 @@ module.exports = function(app, passport) {
     .route('/auth/github/callback')
     .get(passport.authenticate('github', {
       successRedirect: '/',
-      failureRedirect: '/login',
+      failureRedirect: '/login'
     }));
 };
