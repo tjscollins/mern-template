@@ -46,11 +46,11 @@ const loaders = [
 ];
 
 const postLoaders = [
-  {
-    test: /\.jsx?$/,
-    exclude: /(test|node_modules|bower_components)/,
-    loader: 'istanbul-instrumenter',
-  },
+  // {
+  //   test: /\.jsx?$/,
+  //   exclude: /(test|node_modules|bower_components)/,
+  //   loader: 'istanbul-instrumenter',
+  // },
 ];
 
 const plugins = [
@@ -59,8 +59,8 @@ const plugins = [
 
 module.exports = {
   entry: [
-    // 'script!jquery/dist/jquery.min.js',
-    // 'script!bootstrap-sass/assets/javascripts/bootstrap.min.js',
+    'script!jquery/dist/jquery.min.js',
+    'script!bootstrap-sass/assets/javascripts/bootstrap.min.js',
     './client/react/react-app.jsx',
   ],
   externals: {

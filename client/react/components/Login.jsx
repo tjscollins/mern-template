@@ -1,11 +1,11 @@
 /*----------Modules----------*/
-import React from 'react';
+import React, {Component} from 'react';
 
 /*----------Components----------*/
 
 
 /*eslint-disable require-jsdoc*/
-export class Login extends React.Component {
+export class Login extends Component {
   constructor() {
     super();
   }

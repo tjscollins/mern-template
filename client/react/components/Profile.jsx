@@ -1,11 +1,11 @@
 /*----------Modules----------*/
-import React from 'react';
+import React, {Component} from 'react';
 
 /*----------Components----------*/
 
 
 /*eslint-disable require-jsdoc*/
-export class Profile extends React.Component {
+export class Profile extends Component {
   constructor() {
     super();
   }
