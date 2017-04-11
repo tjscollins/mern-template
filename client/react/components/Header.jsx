@@ -7,7 +7,7 @@ import $ from 'jquery';
 /*----------Components----------*/
 
 /*----------Redux----------*/
-import {setUser} from 'actions';
+import {setUser, errorLog} from 'actions';
 
 export class Header extends Component {
   constructor() {
@@ -23,7 +23,9 @@ export class Header extends Component {
         dispatch(setUser(user));
       }
     })
-    .catch(console.error);
+    .catch(() => {
+      dispatch(errorLog(error));
+    });
 }
   render() {
     const {_id} = this.props.userSession;

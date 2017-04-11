@@ -6,3 +6,12 @@ export const setUser = (user) => {
     user,
   };
 };
+
+// errorLog actions
+
+export const errorLog = (error) => {
+  return {
+    type: 'ERROR_LOG',
+    error,
+  };
+};

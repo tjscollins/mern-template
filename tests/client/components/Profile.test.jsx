@@ -4,7 +4,7 @@
 import expect from 'expect';
 import React from 'react';
 // import ReactDOM from 'react-dom';
-import TestUtils from 'react-addons-test-utils';
+import TestUtils from 'react-dom/test-utils';
 
 /*----------Redux----------*/
 // import {Provider} from 'react-redux';
@@ -20,7 +20,7 @@ describe('Profile', () => {
 
   it('should render without errors', () => {
     try {
-      let profile = TestUtils.renderIntoDocument(<Profile />);
+      TestUtils.renderIntoDocument(<Profile />);
     } catch (error) {
       expect(error).toNotExist();
     }

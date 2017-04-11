@@ -4,11 +4,11 @@
 import expect from 'expect';
 import React from 'react';
 // import ReactDOM from 'react-dom';
-import TestUtils from 'react-addons-test-utils';
+import TestUtils from 'react-dom/test-utils';
 
 /*----------Redux----------*/
-// import {Provider} from 'react-redux'; import {configure} from
-// 'configureStore';
+import {Provider} from 'react-redux';
+import configureStore from 'configureStore';
 
 /*----------Components----------*/
 import {Index} from 'Index';
@@ -20,7 +20,11 @@ describe('Index', () => {
 
   it('should render without errors', () => {
     try {
-      let index = TestUtils.renderIntoDocument(<Index />);
+      TestUtils.renderIntoDocument(
+        <Provider store={configureStore()}>
+          <Index />
+        </Provider>
+      );
     } catch (error) {
       expect(error).toNotExist();
     }

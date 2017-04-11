@@ -9,3 +9,15 @@ export const userSessionReducer = (state ={}, action) => {
       return state;
   }
 };
+
+export const errorLogReducer = (state = [], action) => {
+  switch(action.type) {
+    case 'ERROR_LOG':
+      return [
+        ...state,
+        action.error,
+      ];
+    default:
+      return state;
+  }
+};
