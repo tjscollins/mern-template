@@ -53,7 +53,7 @@ const loaders = [
 const postLoaders = [
   {
     test: /\.jsx?$/,
-    exclude: /(test|node_modules|bower_components)/,
+    exclude: /(node_modules|bower_components)/,
     loader: 'istanbul-instrumenter'
   }
 ];

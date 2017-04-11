@@ -26,7 +26,7 @@ module.exports = function(config) {
       ]
     },
     files: [
-      // 'node_modules/jquery/dist/jquery.min.js',
+      'node_modules/jquery/dist/jquery.min.js',
       'tests/client/**/*.test.js',
       'tests/client/**/*.test.jsx',
     ],
@@ -34,7 +34,13 @@ module.exports = function(config) {
       'mocha', 'sinon',
     ],
     plugins: [
-      'karma-phantomjs-launcher', 'karma-mocha', 'karma-sourcemap-loader', 'karma-webpack', 'karma-coverage', 'karma-mocha-reporter', 'karma-sinon',
+      'karma-phantomjs-launcher',
+      'karma-mocha',
+      'karma-sourcemap-loader',
+      'karma-webpack',
+      'karma-coverage',
+      'karma-mocha-reporter',
+      'karma-sinon',
     ],
     preprocessors: {
       'tests/client/**/*.test.js': [
