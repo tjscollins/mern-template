@@ -1,0 +1,21 @@
+.dropdown-form {
+  padding: 5px;
+  height:auto;
+
+  input {
+    margin-bottom: 5px;
+  }
+}
+
+nav {
+  height: 50px;
+  // overflow-y: hidden;
+}
+
+nav button.login {
+  position: absolute;
+  margin: 7px;
+  top: 0px;
+  left: -50px;
+  // padding: 0px;
+}
