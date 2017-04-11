@@ -39,6 +39,7 @@ const DIST = './public/';
 const HTML = CLIENT + 'html/*.html';
 const REACT_REDUX = CLIENT + '/**/*.jsx';
 const STYLES = CLIENT + 'styles/';
+const JS_BUNDLE = 'bundle.min.js';
 
 // SCSS fonts
 const FONTS = {
@@ -110,8 +111,9 @@ gulp.task('react-redux-dev', () => {
     .src(CLIENT + 'react/index.jsx')
     .pipe(sourcemaps.init())
     .pipe(webpack(require('./webpack.config.dev.js')))
-    .pipe(concat('bundle.js'))
+    .pipe(concat(JS_BUNDLE))
     .pipe(sourcemaps.write())
+    .pipe(gzip({threshold: 1024}))
     .pipe(gulp.dest(DIST))
     .pipe(livereload());
 });
@@ -121,7 +123,7 @@ gulp.task('react-redux-production', () => {
     .src(CLIENT + 'react/index.jsx')
     .pipe(sourcemaps.init())
     .pipe(webpack(require('./webpack.config.production.js')))
-    .pipe(concat('bundle.js'))
+    .pipe(concat(JS_BUNDLE))
     .pipe(sourcemaps.write())
     .pipe(gzip({threshold: 1024}))
     .pipe(gulp.dest(DIST))

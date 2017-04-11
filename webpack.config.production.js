@@ -3,7 +3,36 @@ const webpack = require('webpack');
 /**
  * Webpack Loaders
  */
-const preLoaders = [];
+const preLoaders = [
+  {
+    test: /\.css$/,
+    loader: 'null',
+  }, {
+    test: /\.mp4$/,
+    loader: 'null',
+  }, {
+    test: /\.svg$/,
+    loader: 'null',
+  }, {
+    test: /\.png$/,
+    loader: 'null',
+  }, {
+    test: /\.jpg$/,
+    loader: 'null',
+  }, {
+    test: /\.gif$/,
+    loader: 'null',
+  }, {
+    test: /\.(otf|eot|ttf|woff|woff2)/,
+    loader: 'null',
+  },
+
+  // Loader for JSON, used in some tests
+  {
+    test: /\.json$/,
+    loader: 'json',
+  },
+];
 
 const loaders = [
   {
@@ -16,11 +45,6 @@ const loaders = [
   }
 ];
 const postLoaders = [
-  {
-    test: /\.jsx?$/,
-    exclude: /(test|node_modules|bower_components)/,
-    loader: 'istanbul-instrumenter'
-  }
 ];
 
 /**
