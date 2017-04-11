@@ -40,7 +40,7 @@ module.exports = function(app, passport) {
     .get(isLoggedIn,
     /*istanbul ignore next: not sure how to fake req.isAuthenticated() for tests*/
     function(req, res) {
-      res.json(req.user.github);
+      res.json(req.user);
     });
 
   app

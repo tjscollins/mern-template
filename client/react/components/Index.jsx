@@ -1,8 +1,11 @@
 /*----------Modules----------*/
 import React, {Component} from 'react';
+import Markdown from 'markdown-to-jsx';
 
 /*----------Components----------*/
 import Header from 'Header';
+
+const README = require('README.md');
 
 export class Index extends Component {
   constructor() {
@@ -12,6 +15,11 @@ export class Index extends Component {
     return (
       <div>
         <Header />
+        <div className='container'>
+          <Markdown>
+            {README}
+          </Markdown>
+        </div>
       </div>
     );
   }

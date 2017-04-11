@@ -2,15 +2,29 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import $ from 'jquery';
 
 /*----------Components----------*/
 
 /*----------Redux----------*/
+import {setUser} from 'actions';
 
 export class Header extends Component {
   constructor() {
     super();
   }
+  componentDidMount() {
+  const {dispatch} = this.props;
+  $
+    .get('/api/me')
+    .done((user) => {
+      console.log(user);
+      if (user.github) {
+        dispatch(setUser(user));
+      }
+    })
+    .catch(console.error);
+}
   render() {
     const {_id} = this.props.userSession;
     return (
@@ -53,6 +67,7 @@ export class Header extends Component {
 }
 
 Header.propTypes = {
+  dispatch: PropTypes.func,
   userSession: PropTypes.object,
 };
 

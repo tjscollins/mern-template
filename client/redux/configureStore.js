@@ -1,9 +1,9 @@
 import * as redux from 'redux';
-import {reducer} from 'reducers';
+import {userSessionReducer} from 'reducers';
 
 const configureStore = (initialState = {}) => {
-  let combinedReducer = reducer || redux.combineReducers({
-    main: reducer,
+  let combinedReducer = redux.combineReducers({
+    userSession: userSessionReducer,
   });
   let store = redux.createStore(combinedReducer, initialState, redux.compose(window.devToolsExtension
     ? window.devToolsExtension()

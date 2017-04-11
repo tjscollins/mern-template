@@ -31,7 +31,7 @@ To install the dependencies, enter the following in your terminal:
 
 ```
 $ cd your-project
-$ npm install
+$ yarn install
 ```
 
 This will install the required components into the `your-project` directory.

@@ -6,32 +6,37 @@ const webpack = require('webpack');
 const preLoaders = [
   {
     test: /\.css$/,
-    loader: 'null',
+    loader: 'null'
   }, {
     test: /\.mp4$/,
-    loader: 'null',
+    loader: 'null'
   }, {
     test: /\.svg$/,
-    loader: 'null',
+    loader: 'null'
   }, {
     test: /\.png$/,
-    loader: 'null',
+    loader: 'null'
   }, {
     test: /\.jpg$/,
-    loader: 'null',
+    loader: 'null'
   }, {
     test: /\.gif$/,
-    loader: 'null',
+    loader: 'null'
   }, {
     test: /\.(otf|eot|ttf|woff|woff2)/,
-    loader: 'null',
+    loader: 'null'
+  },
+  // For loading Markdown
+  {
+    test: /\.(txt|md)$/,
+    loader: 'raw-loader'
   },
 
   // Loader for JSON, used in some tests
   {
     test: /\.json$/,
-    loader: 'json',
-  },
+    loader: 'json'
+  }
 ];
 
 const loaders = [
@@ -39,37 +44,35 @@ const loaders = [
     test: /\.jsx?$/,
     loader: 'babel-loader',
     query: {
-      presets: ['react', 'es2015', 'stage-0'],
+      presets: ['react', 'es2015', 'stage-0']
     },
-    exclude: /(node_modules|bower_components)/,
-  },
+    exclude: /(node_modules|bower_components)/
+  }
 ];
 
 const postLoaders = [
-  // {
-  //   test: /\.jsx?$/,
-  //   exclude: /(test|node_modules|bower_components)/,
-  //   loader: 'istanbul-instrumenter',
-  // },
+  {
+    test: /\.jsx?$/,
+    exclude: /(test|node_modules|bower_components)/,
+    loader: 'istanbul-instrumenter'
+  }
 ];
 
-const plugins = [
-  new webpack.ProvidePlugin({'$': 'jquery', 'jQuery': 'jquery', 'jquery': 'jquery'}),
-];
+const plugins = [new webpack.ProvidePlugin({'$': 'jquery', 'jQuery': 'jquery', 'jquery': 'jquery'})];
 
 module.exports = {
   entry: [
     'script!jquery/dist/jquery.min.js',
     'script!bootstrap-sass/assets/javascripts/bootstrap.min.js',
-    './client/react/react-app.jsx',
+    './client/react/react-app.jsx'
   ],
   externals: {
-    jquery: 'jQuery',
+    jquery: 'jQuery'
   },
   plugins,
   output: {
     path: __dirname,
-    filename: './public/bundle.js',
+    filename: './public/bundle.js'
   },
   resolve: {
     root: __dirname,
@@ -77,19 +80,17 @@ module.exports = {
       'node_modules',
       './client/react/',
       './client/react/components/',
-      './client/redux',
+      './client/redux'
     ],
     alias: {
-      applicationStyles: 'client/styles/main.scss',
+      applicationStyles: 'client/styles/main.scss'
     },
-    extensions: [
-      '', '.js', '.jsx',
-    ],
+    extensions: ['', '.js', '.jsx', '.json']
   },
- module: {
-  preLoaders,
-  loaders,
-  postLoaders
-},
-  devtool: 'eval-source-map',
+  module: {
+    preLoaders,
+    loaders,
+    postLoaders
+  },
+  devtool: 'eval-source-map'
 };

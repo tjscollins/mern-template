@@ -17,7 +17,8 @@ import Profile from 'Profile';
  * Initial State setup
  */
  const INIT_STATE = {
-   userSession: {}
+   userSession: {
+   },
  };
 
 ReactDOM.render(
