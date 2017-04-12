@@ -1,54 +1,5 @@
 const webpack = require('webpack');
-
-/**
- * Webpack Loaders
- */
-const preLoaders = [
-  {
-    test: /\.css$/,
-    loader: 'null'
-  }, {
-    test: /\.mp4$/,
-    loader: 'null'
-  }, {
-    test: /\.svg$/,
-    loader: 'null'
-  }, {
-    test: /\.png$/,
-    loader: 'null'
-  }, {
-    test: /\.jpg$/,
-    loader: 'null'
-  }, {
-    test: /\.gif$/,
-    loader: 'null'
-  }, {
-    test: /\.(otf|eot|ttf|woff|woff2)/,
-    loader: 'null'
-  },
-  // For loading Markdown
-  {
-    test: /\.(txt|md)$/,
-    loader: 'raw-loader'
-  },
-
-  // Loader for JSON, used in some tests
-  {
-    test: /\.json$/,
-    loader: 'json'
-  }
-];
-
-const loaders = [
-  {
-    test: /\.jsx?$/,
-    loader: 'babel-loader',
-    query: {
-      presets: ['react', 'es2015', 'stage-0']
-    },
-    exclude: /(node_modules|bower_components)/
-  }
-];
+const path = require('path');
 
 const postLoaders = [
   {
@@ -58,39 +9,71 @@ const postLoaders = [
   }
 ];
 
-const plugins = [new webpack.ProvidePlugin({'$': 'jquery', 'jQuery': 'jquery', 'jquery': 'jquery'})];
-
 module.exports = {
   entry: [
-    'script!jquery/dist/jquery.min.js',
-    'script!bootstrap-sass/assets/javascripts/bootstrap.min.js',
-    './client/react/react-app.jsx'
+    'script-loader!jquery/dist/jquery.min.js', 'script-loader!bootstrap-sass/assets/javascripts/bootstrap.min.js', './client/react/react-app.jsx'
   ],
   externals: {
     jquery: 'jQuery'
   },
-  plugins,
+  plugins: [new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('development')
+      }
+    })],
   output: {
     path: __dirname,
     filename: './public/bundle.js'
   },
   resolve: {
-    root: __dirname,
-    modulesDirectories: [
-      'node_modules',
-      './client/react/',
-      './client/react/components/',
-      './client/redux'
-    ],
     alias: {
-      applicationStyles: 'client/styles/main.scss'
+      Index: path.join(__dirname, 'client/react/components/Index.jsx'),
+      Header: path.join(__dirname, 'client/react/components/Header.jsx'),
+      Login: path.join(__dirname, 'client/react/components/Login.jsx'),
+      Profile: path.join(__dirname, 'client/react/components/Profile.jsx')
     },
-    extensions: ['', '.js', '.jsx', '.json']
+    modules: [
+      __dirname, 'node_modules', path.join(__dirname, 'client/react'),
+      path.join(__dirname, 'client/react/components'),
+      path.join(__dirname, 'client/redux')
+    ]
   },
   module: {
-    preLoaders,
-    loaders,
-    postLoaders
+    rules: [
+      { // For loading Markdown
+        test: /\.(txt|md)$/,
+        loader: 'raw-loader'
+      },
+      // Loader for JSON, used in some tests
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
+      }, {
+        test: /\.jsx?$/,
+        exclude: /(node_modules)/,
+        use: [
+          {
+            loader: 'babel-loader',
+            query: {
+              'presets': [
+                [
+                  'es2015', {
+                    'modules': false
+                  }
+                ],
+                ['react'],
+                ['stage-0']
+              ],
+              'env': {
+                'development': {
+                  'plugins': ['istanbul']
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
   },
   devtool: 'eval-source-map'
 };

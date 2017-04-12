@@ -27,11 +27,14 @@ const concat = require('gulp-concat');
 const autoprefixer = require('gulp-autoprefixer');
 const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass');
-const webpack = require('webpack-stream');
 const nodemon = require('gulp-nodemon');
 const del = require('del');
 const gzip = require('gulp-gzip');
 
+const webpack = require('webpack');
+const webpackStream = require('webpack-stream');
+const WEBPACK_DEV = require('./webpack.config.dev.js');
+const WEBPACK_PROD = require('./webpack.config.production.js');
 
 // File Paths
 const CLIENT = './client/';
@@ -110,7 +113,7 @@ gulp.task('react-redux-dev', () => {
   return gulp
     .src(CLIENT + 'react/index.jsx')
     .pipe(sourcemaps.init())
-    .pipe(webpack(require('./webpack.config.dev.js')))
+    .pipe(webpackStream(WEBPACK_DEV, webpack))
     .pipe(concat(JS_BUNDLE))
     .pipe(sourcemaps.write())
     .pipe(gzip({threshold: 1024}))
@@ -122,7 +125,7 @@ gulp.task('react-redux-production', () => {
   return gulp
     .src(CLIENT + 'react/index.jsx')
     .pipe(sourcemaps.init())
-    .pipe(webpack(require('./webpack.config.production.js')))
+    .pipe(webpackStream(WEBPACK_PROD, webpack))
     .pipe(concat(JS_BUNDLE))
     .pipe(sourcemaps.write())
     .pipe(gzip({threshold: 1024}))
