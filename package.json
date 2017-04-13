@@ -22,7 +22,7 @@
   "scripts": {
     "server-test": "export NODE_ENV=test || SET NODE_ENV=test && istanbul cover _mocha tests/server/**/*test.js --dir ./tests/server/coverage",
     "client-test": "karma start",
-    "start": "node server.js",
+    "start": "babel-node server.js",
     "test": "export NODE_ENV=test || SET NODE_ENV=test && istanbul cover _mocha tests/server/**/*test.js --dir ./tests/server/coverage && karma start",
     "coverage": "istanbul cover _mocha tests/server/**/*test.js"
   },
@@ -40,6 +40,7 @@
     "express-session": "^1.15.2",
     "express-static-gzip": "^0.2.2",
     "font-awesome": "^4.7.0",
+    "isomorphic-webpack": "^2.0.2",
     "jquery": "^3.2.1",
     "markdown-to-jsx": "^5.0.2",
     "mongoose": "^4.9.4",
@@ -50,7 +51,9 @@
     "react-dom": "^15.5.3",
     "react-redux": "^5.0.4",
     "react-router-dom": "^4.0.0",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "webpack": "^2.3.3",
+    "webpack-dev-middleware": "^1.10.1"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
@@ -104,7 +107,6 @@
     "supertest": "^3.0.0",
     "uglify-js": "^2.8.22",
     "uglifyjs-webpack-plugin": "^0.4.1",
-    "webpack": "^2.3.3",
     "webpack-stream": "^3.2.0"
   }
 }

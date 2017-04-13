@@ -1,12 +1,15 @@
 'use strict';
 
 const express = require('express');
-const routes = require('./server/routes/index.js');
-const mongoose = require('mongoose');
-const passport = require('passport');
+const expressStaticGzip = require('express-static-gzip');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const expressStaticGzip = require('express-static-gzip');
+const routes = require('./server/routes/index.js');
+
+
+const mongoose = require('mongoose');
+const passport = require('passport');
+
 
 const app = express();
 require('dotenv').load();
