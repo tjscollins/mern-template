@@ -54,9 +54,11 @@ module.exports = {
         loader: 'json-loader'
       }, {
         test: /\.jsx?$/,
+        exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
           query: {
+            'babelrc': false,
             'presets': [
               [
                 'es2015', {
@@ -65,7 +67,8 @@ module.exports = {
               ],
               ['react'],
               ['stage-0']
-            ]
+            ],
+            'plugins': []
           }
         }
       }

@@ -11,7 +11,7 @@ describe('Server Routes', () => {
         request(app)
           .get('/')
           .send()
-          .expect(302)
+          .expect(200)
           .end((err, res) => {
             if (err)
               return done(err);

@@ -207,38 +207,53 @@ function routes(app, passport) {
   }));
 }
 
+var mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
+var options = {
+  server: {
+    socketOptions: {
+      keepAlive: 300000,
+      connectTimeoutMS: 30000
+    }
+  },
+  replset: {
+    socketOptions: {
+      keepAlive: 300000,
+      connectTimeoutMS: 30000
+    }
+  }
+};
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/mern-template', options);
+mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
+
 var express = require('express');
-var expressStaticGzip = require('express-static-gzip');
+var compression = require('compression');
 var session = require('express-session');
 var bodyParser = require('body-parser');
-// const routes = require('./server/routes/index.js');
-var mongoose = require('mongoose');
 var passport = require('passport');
 
 var app = express();
 require('dotenv').load();
 require('./server/config/passport').default(passport);
 
-mongoose.connect(process.env.MONGODB_URI);
-mongoose.Promise = global.Promise;
-
 app.use(bodyParser.json());
-app.use('/public', expressStaticGzip(process.cwd() + '/public'));
-
+app.use(compression());
 app.use(session({
   secret: 'secretClementine',
   resave: false,
   saveUninitialized: true
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
-
 routes(app, passport);
-
-var port = process.env.PORT || /* istanbul ignore next: no need to test */8080;
-app.listen(port, function () {
-  console.log('Node.js listening on port ' + port + '...');
+app.use('/public', express.static(process.cwd() + '/public'));
+mongoose.connection.once('open', function () {
+  // Wait for the database connection to establish, then start the app.
+  var port = process.env.PORT || /* istanbul ignore next: no need to test */8080;
+  app.listen(port, function () {
+    console.log('Node.js listening on port ' + port + '...');
+  });
 });
 
 module.exports = {

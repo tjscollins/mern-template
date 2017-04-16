@@ -1,7 +1,7 @@
 {
   "name": "mern-template",
   "version": "1.0.0",
-  "description": "A React-Redux fork of Clementinejs-FCC with Gulp building and Karma/Mocha unit testing",
+  "description": "A MERN stack template based on Clementine.js",
   "main": "server.js",
   "repository": {
     "type": "git",
@@ -20,10 +20,10 @@
     "testing driven development"
   ],
   "scripts": {
-    "server-test": "export NODE_ENV=test || SET NODE_ENV=test && istanbul cover _mocha tests/server/**/*test.js --dir ./tests/server/coverage",
-    "client-test": "karma start",
+    "server-test": "export NODE_ENV=test || SET NODE_ENV=test && istanbul cover _mocha tests/server/**/*test.js --dir ./tests/server/coverage -- -t 5000",
+    "client-test": "export NODE_ENV=test || SET NODE_ENV=test && karma start",
     "start": "node server.js",
-    "test": "export NODE_ENV=test || SET NODE_ENV=test && istanbul cover _mocha tests/server/**/*test.js --dir ./tests/server/coverage && karma start",
+    "test": "export NODE_ENV=test || SET NODE_ENV=test && istanbul cover _mocha tests/server/**/*test.js --dir ./tests/server/coverage -- -t 5000 && karma start",
     "coverage": "istanbul cover _mocha tests/server/**/*test.js"
   },
   "engines": {
@@ -34,6 +34,7 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "bootstrap-sass": "^3.3.7",
+    "compression": "^1.6.2",
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "express-session": "^1.15.2",
@@ -45,13 +46,14 @@
     "mongoose": "^4.9.4",
     "passport": "^0.3.2",
     "passport-github": "^1.1.0",
-    "prop-types": "^15.5.6",
+    "prop-types": "^15.5.8",
     "react": "^15.5.3",
     "react-dom": "^15.5.3",
     "react-redux": "^5.0.4",
     "react-router-dom": "^4.0.0",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
+    "uuid": "^3.0.1",
     "webpack": "^2.3.3",
     "webpack-dev-middleware": "^1.10.1"
   },
@@ -104,7 +106,6 @@
     "karma-webpack": "^2.0.3",
     "mocha": "^3.2.0",
     "raw-loader": "^0.5.1",
-    "react-addons-test-utils": "^15.4.1",
     "rollup": "^0.41.6",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-node-resolve": "^3.0.0",

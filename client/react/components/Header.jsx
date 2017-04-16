@@ -15,10 +15,10 @@ export class Header extends Component {
   }
   componentDidMount() {
   const {dispatch} = this.props;
+  /*istanbul ignore next*/
   $
     .get('/api/me')
     .done((user) => {
-      console.log(user);
       if (user.github) {
         dispatch(setUser(user));
       }

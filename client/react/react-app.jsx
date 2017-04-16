@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter, MemoryRouter, Route} from 'react-router-dom';
+import uuid from 'uuid';
 
 /*----------Redux----------*/
 import {Provider} from 'react-redux';
@@ -20,9 +21,9 @@ const INIT_STATE = {
 };
 
 const routes = [
-  <Route path='/' component={Index} />,
-  <Route path='/login' component={Login} />,
-  <Route path='/profile' component={Profile} />
+  <Route key={uuid()} path='/' component={Index} />,
+  <Route key={uuid()} path='/login' component={Login} />,
+  <Route key={uuid()} path='/profile' component={Profile} />
 ];
 
 const router = (type) => {

@@ -7,7 +7,7 @@ const User = require('./../../server/models/users.js');
 const {users, populateServer} = require('./seed');
 
 require('dotenv').load('../../.env');
-require('../../server/config/passport').default(passport);
+// require('../../server/config/passport').default(passport);
 
 beforeEach((done) => {
   populateServer(done);

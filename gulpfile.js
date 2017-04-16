@@ -25,6 +25,7 @@ const gulp = require('gulp');
 const concat = require('gulp-concat');
 const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass');
+const cleanCss = require('gulp-clean-css');
 const autoprefixer = require('gulp-autoprefixer');
 const livereload = require('gulp-livereload');
 const nodemon = require('gulp-nodemon');
@@ -109,6 +110,7 @@ gulp.task('styles', () => {
     .pipe(sourcemaps.init())
     .pipe(sass(SCSS.sassOpts))
     .pipe(autoprefixer())
+    .pipe(cleanCss())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(SCSS.out))
     .pipe(livereload());
