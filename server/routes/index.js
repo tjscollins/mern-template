@@ -12,7 +12,7 @@ import webpackConfiguration from '../../webpack.config.server.js';
 
 const path = process.cwd();
 
-module.exports = function(app, passport) {
+function routes(app, passport) {
   const compiler = webpack(webpackConfiguration);
 
   app.use(webpackDevMiddleware(compiler, {
@@ -68,7 +68,6 @@ app.use(async (req, res, next) => {
     const requestUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
     const appBody = renderToString(evalBundleCode(requestUrl).default);
     res.send(index(appBody));
-    // res.sendFile(`${path}/public/index.html`);
   };
 
   function isLoggedIn(req, res, next) {
@@ -79,8 +78,6 @@ app.use(async (req, res, next) => {
       res.redirect('/login');
     }
   }
-
-  // Server-side react rendering require('../render/index')(app);
 
   app
     .route('/')
@@ -120,3 +117,5 @@ app.use(async (req, res, next) => {
       failureRedirect: '/login'
     }));
 };
+
+export default routes;

@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 
-module.exports = {
+export default {
   context: __dirname,
   entry: {
     app: [path.resolve(__dirname, './client/react/react-app.jsx')]
@@ -52,6 +52,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           query: {
+            'babelrc': false,
             'presets': [
               [
                 'es2015', {
@@ -61,6 +62,7 @@ module.exports = {
               ['react'],
               ['stage-0']
             ],
+            'plugins': [],
           }
         }
       }, {

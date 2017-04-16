@@ -22,14 +22,17 @@
  */
 
 const gulp = require('gulp');
-const livereload = require('gulp-livereload');
 const concat = require('gulp-concat');
-const autoprefixer = require('gulp-autoprefixer');
 const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass');
+const autoprefixer = require('gulp-autoprefixer');
+const livereload = require('gulp-livereload');
 const nodemon = require('gulp-nodemon');
 const del = require('del');
-const gzip = require('gulp-gzip');
+
+const rollup = require('rollup-stream');
+const babel = require('rollup-plugin-babel');
+const source = require('vinyl-source-stream');
 
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
@@ -38,6 +41,7 @@ const WEBPACK_PROD = require('./webpack.config.production.js');
 
 // File Paths
 const CLIENT = './client/';
+const SERVER = './server/';
 const DIST = './public/';
 const HTML = CLIENT + 'html/*.html';
 const REACT_REDUX = CLIENT + '/**/*.jsx';
@@ -79,11 +83,13 @@ const SCSS = {
 gulp.task('static', [
   'fonts', 'img',
 ], () => {});
+
 gulp.task('fonts', () => {
   return gulp
     .src(FONTS. in)
     .pipe(gulp.dest(FONTS.out));
 });
+
 gulp.task('img', () => {
   return gulp
     .src(IMG. in)
@@ -111,24 +117,22 @@ gulp.task('styles', () => {
 // Scripts
 gulp.task('react-redux-dev', () => {
   return gulp
-    .src(CLIENT + 'react/index.jsx')
+    .src(CLIENT + 'react/react-app.jsx')
     .pipe(sourcemaps.init())
     .pipe(webpackStream(WEBPACK_DEV, webpack))
     .pipe(concat(JS_BUNDLE))
     .pipe(sourcemaps.write())
-    .pipe(gzip({threshold: 1024}))
     .pipe(gulp.dest(DIST))
     .pipe(livereload());
 });
 
 gulp.task('react-redux-production', () => {
   return gulp
-    .src(CLIENT + 'react/index.jsx')
+    .src(CLIENT + 'react/react-app.jsx')
     .pipe(sourcemaps.init())
     .pipe(webpackStream(WEBPACK_PROD, webpack))
     .pipe(concat(JS_BUNDLE))
     .pipe(sourcemaps.write())
-    .pipe(gzip({threshold: 1024}))
     .pipe(gulp.dest(DIST))
     .pipe(livereload());
 });
@@ -138,7 +142,7 @@ gulp.task('clean', function() {
 });
 
 gulp.task('default', [
-  'static', 'html', 'styles', 'react-redux-dev',
+  'static', 'html', 'styles', 'react-redux-dev', 'build-server'
 ], () => {});
 
 gulp.task('watch', [
@@ -148,11 +152,38 @@ gulp.task('watch', [
   gulp.watch(HTML, ['html']);
   gulp.watch(REACT_REDUX, ['react-redux-dev']);
   gulp.watch(STYLES + '**/*.scss', ['styles']);
+  gulp.watch(SERVER + '**/*js', ['build-server']);
   nodemon({
     script: './server.js',
     ext: 'js json',
     ignore: ['*.scss', '*.jsx', './public/', 'gulpfile.js'],
   });
+});
+
+gulp.task('build-server', () => {
+  return rollup({
+    entry: 'server/server.js',
+    format: 'cjs',
+    plugins: [
+      babel({
+        'presets': [
+          [
+            'es2015',
+            {
+              'modules': false
+            }
+          ],
+          ['stage-0'],
+        ],
+        'plugins': [
+          'external-helpers'
+        ],
+        'exclude': 'node_modules/**'
+      })
+    ],
+  })
+  .pipe(source('server.js'))
+  .pipe(gulp.dest('./'));
 });
 
 gulp.task('build', [
@@ -161,4 +192,5 @@ gulp.task('build', [
   'html',
   'styles',
   'react-redux-production',
+  'build-server',
 ], () => {});
